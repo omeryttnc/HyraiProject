@@ -8,6 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 import utilities.Driver;
 
@@ -15,6 +16,7 @@ import utilities.Driver;
 public class Hooks {
     public static WebDriver driver;
     public static Actions actions;
+    public static BrowserUtilities browserUtilities = new BrowserUtilities();
 
     public static boolean isHeadless = false;
     public static String browserType = "chrome";
@@ -56,7 +58,7 @@ public class Hooks {
             final byte[] screenshot = ((TakesScreenshot) Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
             scenario.attach(screenshot, "image/png", "screenshots");
         }
-
+        Driver.closeDriver();
 
     }
 
