@@ -1,11 +1,6 @@
 package utilities;
 
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
 
 public class BrowserUtilities {
@@ -45,6 +40,21 @@ public class BrowserUtilities {
 //
 //    }
 //
+    /**
+     * method hard wait yapmak icin kullanildi
+     *
+     * @param second saniye olarak toplam bekleme suresi
+     * @author omeryttnc
+     * @since 30.04.2023
+     */
+    public void waitFor(int second) {
+        try {
+            Thread.sleep(Duration.ofSeconds(second));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 //    /**
 //     * beklenen url gorene kadar beklenmesi icin kullanildi
 //     *
@@ -56,16 +66,6 @@ public class BrowserUtilities {
 //
 //    }
 //
-//    /**
-//     * method hard wait yapmak icin kullanildi
-//     *
-//     * @param second saniye olarak toplam bekleme suresi
-//     * @author omeryttnc
-//     * @since 30.04.2023
-//     */
-//    public static void wait(int second) {
-//
-//    }
 //
 //
 //    /**
@@ -75,7 +75,7 @@ public class BrowserUtilities {
 //     * @author omeryttnc
 //     * @since 30.04.2023
 //     */
-//    public static void waitForPageToLoad(long timeOutInSeconds) {
+//    public  void waitForPageToLoad(long timeOutInSeconds) {
 //        ExpectedCondition<Boolean> expectation = driver -> {
 //            assert driver != null;
 //            return ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
@@ -96,19 +96,11 @@ public class BrowserUtilities {
 //     * @author omeryttnc
 //     * @since 30.04.2023
 //     */
-//    public static boolean isDisplayed(WebElement webElement) {
+//    public  boolean isDisplayed(WebElement webElement) {
 //
 //    }
 //
-//    /**
-//     * method webelemente tiklayabilecegimiz ana kadar bekliyecek
-//     *
-//     * @param webElement bekleyecegimiz webelement note: bekleme suresini default olarak 10 saniye yaptim
-//     * @return bekledigimiz webelement
-//     * @author omeryttnc
-//     * @since 30.04.2023
-//     */
-//    public static WebElement waitForClickable(WebElement webElement) {
+//    public  WebElement waitForClickable(WebElement webElement) {
 //
 //    }
 //
@@ -122,7 +114,7 @@ public class BrowserUtilities {
 //     * @since 30.04.2023
 //     */
 //
-//    public static WebElement waitForVisibility(WebElement webElement, int second) {
+//    public  WebElement waitForVisibility(WebElement webElement, int second) {
 //
 //    }
 //
@@ -134,7 +126,15 @@ public class BrowserUtilities {
 //     * @author omeryttnc
 //     * @since 30.04.2023
 //     */
-//    public static WebElement waitForVisibility(WebElement webElement) {
+//    public  WebElement waitForVisibility(WebElement webElement) {
 //
 //    }
+//    /**
+//     * method webelemente tiklayabilecegimiz ana kadar bekliyecek
+//     *
+//     * @param webElement bekleyecegimiz webelement note: bekleme suresini default olarak 10 saniye yaptim
+//     * @return bekledigimiz webelement
+//     * @author omeryttnc
+//     * @since 30.04.2023
+//     */
 }
