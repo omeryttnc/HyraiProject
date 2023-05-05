@@ -27,4 +27,6 @@ public class CompanyPage extends CommonPage{
 
     @FindBy(css = ".ant-modal-content h1")
     public WebElement positiveText;
+
+    @FindBy(xpath = "//span[text()='Contact']")         public WebElement contactFooter;
 }

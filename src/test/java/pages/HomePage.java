@@ -24,5 +24,5 @@ public class HomePage extends CommonPage {
     public List<WebElement> navbarList;
 
     public List<WebElement> socialMediaIcons2 = new ArrayList<>(Arrays.asList(facebookIcon, twitterIcon, linkedinIcon));
-
+    @FindBy(xpath = "//a[@href='/company']") public WebElement btn_forCompanies;
 }
