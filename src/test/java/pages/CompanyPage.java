@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CompanyPage extends CommonPage{
+public class CompanyPage extends CommonPage {
     @FindBy(css = "[name='name']")
     public WebElement name;
 
@@ -28,5 +28,6 @@ public class CompanyPage extends CommonPage{
     @FindBy(css = ".ant-modal-content h1")
     public WebElement positiveText;
 
-    @FindBy(xpath = "//span[text()='Contact']")         public WebElement contactFooter;
+    @FindBy(xpath = "//span[text()='Contact']")
+    public WebElement contactFooter;
 }

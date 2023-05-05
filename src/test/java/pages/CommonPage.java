@@ -14,11 +14,9 @@ public abstract class CommonPage {
     private ContactPage contactPage;
 
     public CompanyPage getCompanyPage() {
-
-        if(companyPage == null){
+        if (companyPage == null) {
             companyPage = new CompanyPage();
         }
-
         return companyPage;
     }
 
