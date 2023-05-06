@@ -1,7 +1,13 @@
 package utilities;
 
 
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+
 import java.time.Duration;
+
+import static stepDefinitions.Hooks.driver;
 
 public class BrowserUtilities {
 //
@@ -40,6 +46,7 @@ public class BrowserUtilities {
 //
 //    }
 //
+
     /**
      * method hard wait yapmak icin kullanildi
      *
@@ -47,7 +54,7 @@ public class BrowserUtilities {
      * @author omeryttnc
      * @since 30.04.2023
      */
-    public void waitFor(int second) {
+    public static void waitFor(int second) {
         try {
             Thread.sleep(Duration.ofSeconds(second));
         } catch (InterruptedException e) {
@@ -137,4 +144,23 @@ public class BrowserUtilities {
 //     * @author omeryttnc
 //     * @since 30.04.2023
 //     */
+
+    public static void clickWithJs(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true); arguments[0].click();", element);
+    }
+
+    public static void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+
+    public static void clearValue(WebElement element, String text) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute('value','" + text + "')", element);
+    }
+
+    public static void clearValue(WebElement element) {
+        String value = element.getAttribute("value");
+        for (int i = 0; i < value.length(); i++) {
+            element.sendKeys(Keys.BACK_SPACE);
+        }
+    }
 }
