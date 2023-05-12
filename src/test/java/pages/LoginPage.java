@@ -29,5 +29,16 @@ public class LoginPage extends CommonPage {
     @FindBy(css = ".eRPtLU")
     public WebElement warningText;
 
+    @FindBy(css = "[name='email']")
+    public WebElement email;
+
+    @FindBy(css = "[name='password']")
+    public WebElement password;
+
+    @FindBy(css = "[type='submit']")
+    public WebElement signInButton;
+
+
+
 
 }

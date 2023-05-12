@@ -54,7 +54,7 @@ public class US020 extends CommonPage {
     @Then("assert toast message {string} if {string} {string} {string} Text must be visible")
     public void assertToastMessageIfTextMustBeVisible(String email, String isPass, String positiveMessage, String negativeMessage) {
         if (Boolean.parseBoolean(isPass)) {
-            browserUtilities.waitForVisibility(getLoginPage().warningMail);
+//            browserUtilities.waitForVisibility(getLoginPage().warningMail);
             String actualMail = getLoginPage().warningMail.getText();
             Assert.assertEquals(
                     email,
@@ -63,7 +63,7 @@ public class US020 extends CommonPage {
             Assert.assertEquals(positiveMessage, actualMessage);
         } else {
 
-            browserUtilities.waitForVisibility(getLoginPage().toastMessage);
+//            browserUtilities.waitForVisibility(getLoginPage().toastMessage);
             String actualToastMessage = getLoginPage().toastMessage.getText();
             Assert.assertEquals(negativeMessage, actualToastMessage);
 
