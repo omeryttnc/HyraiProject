@@ -12,6 +12,8 @@ public abstract class CommonPage {
     private HomePage homePage;
     private CompanyPage companyPage;
     private ContactPage contactPage;
+    private LoginPage loginPage;
+    private MeetingsPage meetingsPage;
 
     public CompanyPage getCompanyPage() {
         if (companyPage == null) {
@@ -32,5 +34,19 @@ public abstract class CommonPage {
             contactPage = new ContactPage();
         }
         return contactPage;
+    }
+
+    public LoginPage getLoginPage() {
+        if (loginPage == null) {
+            loginPage = new LoginPage();
+        }
+        return loginPage;
+    }
+
+    public MeetingsPage getMeetingsPage() {
+        if (meetingsPage == null) {
+            meetingsPage = new MeetingsPage();
+        }
+        return meetingsPage;
     }
 }

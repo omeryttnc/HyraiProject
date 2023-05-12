@@ -30,4 +30,7 @@ public class CompanyPage extends CommonPage {
 
     @FindBy(xpath = "//span[text()='Contact']")
     public WebElement contactFooter;
+
+    @FindBy(css = "[href='/company/meetings/calendar']")
+    public WebElement meetings;
 }

@@ -5,7 +5,10 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
+import java.util.Date;
 
 import static stepDefinitions.Hooks.driver;
 
@@ -162,5 +165,32 @@ public class BrowserUtilities {
         for (int i = 0; i < value.length(); i++) {
             element.sendKeys(Keys.BACK_SPACE);
         }
+    }
+
+
+    /**
+     * method webelemente tiklayabilecegimiz ana kadar bekliyecek
+     *
+     * @return current year: 2023
+     * @author omeryttnc
+     * @since 30.04.2023
+     */
+    public static String getCurrentYear() {//2023
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        Date date = new Date();
+        return sdf.format(date);
+    }
+
+
+    public static String getCurrentMonth() {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM");
+        Date date = new Date();
+        return sdf.format(date);
+    }
+
+    public static String getCurrentDay() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd");
+        Date date = new Date();
+        return sdf.format(date);
     }
 }
