@@ -3,6 +3,8 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 public class LoginPage extends CommonPage {
 
     @FindBy(xpath = "//span[text()='Forgot Password']")
@@ -19,6 +21,9 @@ public class LoginPage extends CommonPage {
 
     @FindBy(css = ".Toastify__toast-body")
     public WebElement toastMessage;
+
+    @FindBy(css = ".Toastify__toast-body")
+    public List<WebElement> toastMessages;
 
     @FindBy(xpath = "//div[text()='Whooops... Something went wrong.']")
     public WebElement toastMessageError;
@@ -37,8 +42,6 @@ public class LoginPage extends CommonPage {
 
     @FindBy(css = "[type='submit']")
     public WebElement signInButton;
-
-
 
 
 }

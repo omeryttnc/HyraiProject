@@ -15,6 +15,15 @@ public abstract class CommonPage {
     private LoginPage loginPage;
     private MeetingsPage meetingsPage;
 
+    private SignUpPage signUpPage;
+
+    public SignUpPage getSignUpPage() {
+        if (signUpPage == null) {
+            signUpPage = new SignUpPage();
+        }
+        return signUpPage;
+    }
+
     public CompanyPage getCompanyPage() {
         if (companyPage == null) {
             companyPage = new CompanyPage();
