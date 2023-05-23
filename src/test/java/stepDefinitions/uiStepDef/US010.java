@@ -1,7 +1,11 @@
 package stepDefinitions.uiStepDef;
 
+import enums.MAIL_DATA;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
+import org.junit.Assert;
+import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import pages.CommonPage;
 
 import java.util.List;
@@ -28,9 +32,12 @@ public class US010 extends CommonPage {
             getCompanyPage().email.sendKeys(email.get(i));
 
             if (Boolean.parseBoolean(isPass.get(i))) {
-                //todo eger false ise yapilacak islemler
+                String actualMessage = getCompanyPage().positiveText.getText();
+                Assert.assertEquals(warningMessage.get(i), actualMessage);
             } else {
-                //todo eger true ise yapilacak islemler
+
+                String actualMessage = getCompanyPage().warningText.getText();
+                Assert.assertEquals(warningMessage.get(i), actualMessage);
             }
 
             driver.navigate().refresh();
@@ -38,5 +45,26 @@ public class US010 extends CommonPage {
         }
 
 
+    }
+
+    /**
+     * method is used to check object if null
+     *
+     * @param webElement gonderilecek element
+     * @param str gonderecegim text
+     * @since 09.05.2023
+     * @author omer
+     */
+    public void nullChecker(WebElement webElement, String str) {
+        if (str != null) {
+           webElement.sendKeys(str);
+
+        }
+
+    }
+
+    @Test
+    public void name() {
+        System.out.println("MAIL_DATA.V1.getEmail() = " + MAIL_DATA.V1.getEmail());
     }
 }
