@@ -1,42 +1,51 @@
 package enums;
 
-public enum USERINFO {
-    OMER("omer","1234")
-    ;
-    private String token,addresId,email,password, username,address,productID;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
 
-    USERINFO(String email, String password) {
+import java.util.HashMap;
+import java.util.Map;
+
+import static io.restassured.RestAssured.given;
+
+public enum USERINFO {
+    CANDIDATE("demokesif1@gmail.com", "123123", "candidate");
+    private String email, password, state;
+    Response response;
+
+    USERINFO(String email, String password, String state) {
         this.email = email;
         this.password = password;
-
+        this.state = state;
     }
 
-    public String getToken() {
-        // backend den token cagirma
-        return token;
+
+    public Response getResponse() {
+
+
+        Map<String, String> mapBody = new HashMap<>();
+        mapBody.put("email", this.email);
+        mapBody.put("password", this.password);
+        mapBody.put("state", this.state);
+        response = given()
+                .contentType(ContentType.JSON)
+                .body(mapBody)
+                .when()
+                .post("https://hyrai.com/api/login");
+
+        return response;
     }
 
-    public String getAddresId() {
-        return addresId;
+
+    public int getUserID() {
+        JsonPath jsonPath = response.jsonPath();
+
+        return (jsonPath.getInt("result.userId"));
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getProductID() {
-        return productID;
+    public String getMockID() {
+        return response.cookie("MOCKSESSID");
     }
 }

@@ -5,16 +5,16 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebElement;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
 
 import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
-import static stepDefinitions.Hooks.commonPage;
-import static stepDefinitions.Hooks.driver;
+import static stepDefinitions.Hooks.*;
 
 public class US037 {
     @Given("user logs in as a company")
@@ -23,6 +23,12 @@ public class US037 {
         commonPage.getLoginPage().email.sendKeys(ConfigurationReader.getProperty("companyUser_email"));
         commonPage.getLoginPage().password.sendKeys(ConfigurationReader.getProperty("companyUser_password"));
         BrowserUtilities.clickWithJs(commonPage.getLoginPage().signInButton);
+        MOCKSESSID = driver.manage().getCookieNamed("MOCKSESSID").getValue();
+
+//        System.out.println("driver.manage().getCookieNamed(\"MOCKSESSID\").toJson() = " + driver.manage().getCookieNamed("MOCKSESSID").toJson());
+//        System.out.println("driver.manage().getCookieNamed(\"MOCKSESSID\").toString() = " + driver.manage().getCookieNamed("MOCKSESSID").toString());
+//        System.out.println("driver.manage().getCookieNamed(\"MOCKSESSID\").getName() = " + driver.manage().getCookieNamed("MOCKSESSID").getName());
+//        System.out.println("driver.manage().getCookieNamed(\"MOCKSESSID\").getValue() = " + driver.manage().getCookieNamed("MOCKSESSID").getValue());
     }
 
     @When("user clicks on Meetings")
@@ -133,4 +139,6 @@ public class US037 {
             }
         }
     }
+
+
 }

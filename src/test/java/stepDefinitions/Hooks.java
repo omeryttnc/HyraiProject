@@ -19,7 +19,7 @@ public class Hooks {
     public static CommonPage commonPage;
     public static Actions actions;
     public static BrowserUtilities browserUtilities = new BrowserUtilities();
-
+    public static String MOCKSESSID;
     public static boolean isHeadless = false;
     public static String browserType = "chrome";
 
