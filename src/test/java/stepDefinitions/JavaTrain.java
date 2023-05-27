@@ -5,6 +5,8 @@ import enums.USERINFO;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import lombok.Getter;
+import lombok.ToString;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -115,4 +117,65 @@ public class JavaTrain {
     }
 
 
+    @Test
+    public void MapClass_InnerClass_calismasi() {
+        Map<String, Integer> map = new HashMap<>();
+
+        map.put("elma", 20);
+        map.put("armut", 25);
+        map.put("ayva", 30);
+        map.put("kiraz", 35);
+        map.put("muz", 40);
+        map.put("havuc", 45);
+
+        // key adi muz var mi
+        // butun value ler 100 den kucuk mu
+        // 30 dan buyuk 3 harfli urun var mi
+
+        Fruit fruit = new Fruit();
+        fruit.setFruit(new Fruit("omer", "elma", 50, true));
+        fruit.setFruit(new Fruit("omer", "kayisi", 25, false));
+        fruit.setFruit(new Fruit("mahmut", "muz", 30, true));
+        fruit.setFruit(new Fruit("mahmut", "elma", 35, false));
+        fruit.setFruit(new Fruit("mahmut", "kayisi", 40, true));
+
+
+        List<Fruit> fruitList = fruit.getFruitList();
+
+        // organic urunlerinin hepsinin fiyati 30 dan buyuk mu
+        // fiyatin 25 den kucuk herhangi organic bir urun var mi
+        // omer beyin elma urunu organic mi
+        // mahmut beyin kayisi fiyati 30 dan yuksek mi
+
+    }
+
+
+}
+
+@ToString
+@Getter
+class Fruit {
+    private String productName, ownerName;
+    private int price;
+    private boolean isOrganic;
+
+    private List<Fruit> fruitList = new ArrayList<>();
+
+    public Fruit(String ownerName, String productName, int price, boolean isOrganic) {
+        this.ownerName = ownerName;
+        this.productName = productName;
+        this.price = price;
+        this.isOrganic = isOrganic;
+    }
+
+    public Fruit() {
+    }
+
+    public void setFruit(Fruit fruit) {
+        fruitList.add(fruit);
+    }
+
+    public List<Fruit> getFruitList() {
+        return fruitList;
+    }
 }
