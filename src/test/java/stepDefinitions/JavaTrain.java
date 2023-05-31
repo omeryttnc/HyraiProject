@@ -129,8 +129,15 @@ public class JavaTrain {
         map.put("havuc", 45);
 
         // key adi muz var mi
+        Assert.assertTrue(map.keySet().stream().anyMatch(t -> t.equals("muz")));
         // butun value ler 100 den kucuk mu
+        Assert.assertTrue(map.values().stream().allMatch(t -> t < 100));
         // 30 dan buyuk 3 harfli urun var mi
+        Assert.assertTrue(map.entrySet()
+                .stream()
+                .filter(t -> t.getValue() > 30)
+                .anyMatch(t -> t.getKey().length() == 3));
+
 
         Fruit fruit = new Fruit();
         fruit.setFruit(new Fruit("omer", "elma", 50, true));
@@ -143,6 +150,24 @@ public class JavaTrain {
         List<Fruit> fruitList = fruit.getFruitList();
 
         // organic urunlerinin hepsinin fiyati 30 dan buyuk mu
+
+        boolean flag = false;
+
+        for (int i = 0; i < fruitList.size(); i++) {
+            if (fruitList.get(i).isOrganic()) {
+                if (fruitList.get(i).getPrice() > 30) {
+                    flag = true;
+
+                }
+            }
+        }
+
+        Assert.assertTrue(flag);
+
+        Assert.assertTrue(fruitList.stream()
+                .filter(t -> t.isOrganic() == true)
+                .allMatch(t -> t.getPrice() > 30));
+
         // fiyatin 25 den kucuk herhangi organic bir urun var mi
         // omer beyin elma urunu organic mi
         // mahmut beyin kayisi fiyati 30 dan yuksek mi
