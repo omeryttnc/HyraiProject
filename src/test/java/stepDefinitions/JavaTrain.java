@@ -174,6 +174,18 @@ public class JavaTrain {
 
     }
 
+    @Test
+    public void mapLambdaCalismasi() {
+        List<String> price = Arrays.asList("$102.5", "$24.5", "$34.5", "$35.2", "$43.6");
+
+
+        // urun fiyatlarinin oldugu bir listemizin oldugunu varsayalim ve bu listedeki fiyatlari yuzde 10 indirim
+        // yapildiginda butun urunlerin $15 dan daha fazla oldugunu assert etmemiz isteniyor nasil yaparsiniz
+
+
+
+    }
+
 
 }
 
