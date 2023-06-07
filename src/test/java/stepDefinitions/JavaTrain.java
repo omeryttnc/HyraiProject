@@ -169,6 +169,12 @@ public class JavaTrain {
                 .allMatch(t -> t.getPrice() > 30));
 
         // fiyatin 25 den kucuk herhangi organic bir urun var mi
+
+
+        Assert.assertTrue(fruitList.stream()
+                .filter(t -> t.getPrice() <= 25)
+                .anyMatch(Fruit::isOrganic));
+
         // omer beyin elma urunu organic mi
         // mahmut beyin kayisi fiyati 30 dan yuksek mi
 
@@ -177,13 +183,22 @@ public class JavaTrain {
     @Test
     public void mapLambdaCalismasi() {
         List<String> price = Arrays.asList("$102.5", "$24.5", "$34.5", "$35.2", "$43.6");
+//
+        Assert.assertTrue(price.stream()
+                .map(t -> t.substring(1)) // $ sembolunu kaldirdim
+                .map(Double::parseDouble)     // String -> Double  t->Double.parseDouble(t)
+                .map(t -> t * 0.9)   // yuzde 90 u nu bulduk
+                .allMatch(t -> t > 15)); // her bir deger 15 den buyuk mu
 
 
         // urun fiyatlarinin oldugu bir listemizin oldugunu varsayalim ve bu listedeki fiyatlari yuzde 10 indirim
         // yapildiginda butun urunlerin $15 dan daha fazla oldugunu assert etmemiz isteniyor nasil yaparsiniz
 
 
-
+//        List< WebElement> webElements = new ArrayList<>();
+//
+//                  webElements.stream()    weblementeden text e update etmis olduk
+//                .map(WebElement::getText)
     }
 
 

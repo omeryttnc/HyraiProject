@@ -19,14 +19,14 @@ pipeline {
       }
     }
 
-    // stage('Install Postman CLI') {
-    //   steps {
-    //     bat 'powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(\'https://dl-cli.pstmn.io/install/win64.ps1\'))"'
-    //     bat 'npm i -g newman-reporter-htmlextra'
-    //     bat 'npm install -g newman'
+    stage('Install Postman CLI') {
+      steps {
+        bat 'powershell.exe -NoProfile -InputFormat None -ExecutionPolicy AllSigned -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString(\'https://dl-cli.pstmn.io/install/win64.ps1\'))"'
+        bat 'npm i -g newman-reporter-htmlextra'
+        bat 'npm install -g newman'
 
-    //   }
-    // }
+      }
+    }
 
     stage('Postman CLI Login') {
       steps {
