@@ -12,9 +12,13 @@ import org.junit.Assert;
 import pojos.Login.PLogin;
 import pojos.PLoginLombok;
 import pojos.RLogin;
+import pojos.Seach.PSearch;
+import pojos.Seach.Role;
 import utilities.ApiUtilities;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
@@ -23,6 +27,7 @@ import static stepDefinitions.Hooks.MOCKSESSID;
 
 public class LoginApi {
     Response response;
+    ObjectMapper objectMapper = new ObjectMapper();
 
     @Then("print mock session ID")
     public void printMockSessionID() {
@@ -151,6 +156,7 @@ public class LoginApi {
 
 
     }
+
     @SneakyThrows
     @Given("read response by ObjectMapper")
     public void readResponseByObjectMapper() {
@@ -164,19 +170,60 @@ public class LoginApi {
 //         way 1
         Response loginResponse = ApiUtilities.getLoginResponse(mapBody);
 
-        ObjectMapper objectMapper = new ObjectMapper();
 
         PLogin pLogin = objectMapper.readValue(loginResponse.asString(), PLogin.class);
 
 
         // way 2
-       // PLogin pLogin = ApiUtilities.getLoginResponseAsObjectMapper(mapBody);
+        // PLogin pLogin = ApiUtilities.getLoginResponseAsObjectMapper(mapBody);
 
         Assert.assertTrue(pLogin.getStatus());
 
         Assert.assertTrue(pLogin.getResult().getUserId().equals(975));
 
         Assert.assertTrue(pLogin.getUserInfo().getRoles().stream().anyMatch(t -> t.equals("ROLE_USER")));
+
+    }
+
+    @SneakyThrows
+    @Given("get search")
+    public void getSearch() {
+
+
+        Map<String, String> mapBody = new HashMap<>();
+        mapBody.put("email", "demokesif1@gmail.com");
+        mapBody.put("password", "123123");
+        mapBody.put("state", "candidate");
+
+        List<String> data = Arrays.asList("omer", "test", "yeni");
+//         way 1
+        String mockSessionId = ApiUtilities.getMockSessionIdMap(mapBody);
+
+        for (int j = 0; j < data.size(); j++) {
+
+
+            response = given()
+                    .contentType(ContentType.JSON)
+                    .cookie("MOCKSESSID", mockSessionId)
+                    .queryParam("searchParam", data.get(j))
+                    .when()
+                    .get("https://hyrai.com/api/candidate/role/match-search/1"); // way 1
+//                .get("https://hyrai.com/api/candidate/role/match-search/1?searchParam=omer"); way 2
+
+            PSearch pSearch = objectMapper.readValue(response.asString(), PSearch.class);
+           // response.prettyPrint();
+
+            int finalJ = j;
+            Assert.assertTrue(pSearch.getResult().getRoles().stream()
+                    .map(Role::getRoleName)
+                    .map(String::toLowerCase)
+                    .allMatch(t -> t.contains(data.get(finalJ))));
+
+            List<Role> roles = pSearch.getResult().getRoles();
+            for (int i = 0; i < roles.size(); i++) {
+                Assert.assertTrue(roles.get(i).getRoleName().toLowerCase().contains(data.get(j)));
+            }
+        }
 
     }
 }
