@@ -14,8 +14,8 @@ public abstract class CommonPage {
     private ContactPage contactPage;
     private LoginPage loginPage;
     private MeetingsPage meetingsPage;
-
     private SignUpPage signUpPage;
+    private RegistrationUF registrationUF;
 
     public SignUpPage getSignUpPage() {
         if (signUpPage == null) {
@@ -57,5 +57,12 @@ public abstract class CommonPage {
             meetingsPage = new MeetingsPage();
         }
         return meetingsPage;
+    }
+
+    public RegistrationUF getRegistrationUF() {
+        if (registrationUF == null) {
+            registrationUF = new RegistrationUF();
+        }
+        return registrationUF;
     }
 }
