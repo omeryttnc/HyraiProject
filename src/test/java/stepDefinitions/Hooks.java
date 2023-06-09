@@ -11,7 +11,10 @@ import org.openqa.selenium.interactions.Actions;
 import pages.CommonPage;
 import utilities.BrowserUtilities;
 import utilities.ConfigurationReader;
+import utilities.DatabaseUtilities;
 import utilities.Driver;
+
+import javax.xml.crypto.Data;
 
 
 public class Hooks {
@@ -68,13 +71,13 @@ public class Hooks {
 
     @Before("@DB")
     public void setupDatabase() {
-        //DatabaseUtilities.createConnection();
+        DatabaseUtilities.createConnection();
 
     }
 
     @After("@DB")
     public void closeDatabase() {
-        // DatabaseUtilities.closeConnection();
+         DatabaseUtilities.closeConnection();
 
     }
 
