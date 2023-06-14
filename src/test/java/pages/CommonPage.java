@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.support.PageFactory;
+import utilities.DatabaseUtilities;
 
 import static stepDefinitions.Hooks.driver;
 
@@ -16,6 +17,15 @@ public abstract class CommonPage {
     private MeetingsPage meetingsPage;
     private SignUpPage signUpPage;
     private RegistrationUF registrationUF;
+
+    private DatabaseUtilities databaseUtilities;
+
+    public DatabaseUtilities getDatabaseUtilities() {
+        if (databaseUtilities == null) {
+            databaseUtilities = new DatabaseUtilities();
+        }
+        return databaseUtilities;
+    }
 
     public SignUpPage getSignUpPage() {
         if (signUpPage == null) {
