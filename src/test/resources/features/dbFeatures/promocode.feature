@@ -33,3 +33,13 @@ Feature: Promocode
   Scenario: select promocode 2
     Given select promocode inner
 
+
+    @DB
+    Scenario: e2e
+      When create promocode
+      Then is promocode created
+      When update promocode
+      Then is promocode updated
+      When delete promocode
+      Then is promocode deleted
+
