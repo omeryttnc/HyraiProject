@@ -19,10 +19,11 @@ public class DatabaseUtilities {
     private static Statement statement;
     private static PreparedStatement preparedStatement;
     public static ResultSet resultSet;
-
+// jdbc:sqlite:C:/work/sample.db
     public static Connection createConnection() {
         try {
-            connection = DriverManager.getConnection(db_url, db_username, db_password);
+            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/savsa/IdeaProjects/HyraiProject/src/test/resources/urbanicFarm_sqlite.db"); // sqlite
+//            connection = DriverManager.getConnection(db_url, db_username, db_password); // mysql
             return connection;
         } catch (SQLException e) {
             throw new RuntimeException(e);
