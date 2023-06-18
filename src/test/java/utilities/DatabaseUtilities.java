@@ -22,7 +22,11 @@ public class DatabaseUtilities {
 // jdbc:sqlite:C:/work/sample.db
     public static Connection createConnection() {
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/savsa/IdeaProjects/HyraiProject/src/test/resources/urbanicFarm_sqlite.db"); // sqlite
+            connection = DriverManager.getConnection("jdbc:sqlite:"+System.getProperty("user.dir")+"/src/test/resources/urbanicFarm_sqlite.db"); // sqlite
+            // kayit yaparken unutmusum burda degisiklik yapmazsam baska bir localde hata verecekti
+            // System.getProperty("user.dir") bana projemin local de oldugu konumu verecek
+//
+//            connection = DriverManager.getConnection("jdbc:sqlite:C:/Users/savsa/IdeaProjects/HyraiProject/src/test/resources/urbanicFarm_sqlite.db"); // sqlite
 //            connection = DriverManager.getConnection(db_url, db_username, db_password); // mysql
             return connection;
         } catch (SQLException e) {
